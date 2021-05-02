@@ -18,19 +18,13 @@ public:
             return false;
         ListNode *fast=head->next;
         ListNode *slow=head;
-        while(fast!=NULL)
-        {
-            if(fast == slow)
-                return true;
-            
-            if(fast->next!=NULL)
-            {
-                slow=slow->next;
-                fast=fast->next->next;
-            }
-            else
-                 return false;
-        }
-        return false;
+    while( fast != slow)
+    {
+        if( !fast || !fast->next ) return false;
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    
+        return true;
     }
 };
