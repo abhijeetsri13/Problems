@@ -8,33 +8,32 @@ class Solution{
     	// Your code here
     	if(n==0||n==1)
     	return n;
-    	 int max_platform = 0;
-    	 std::list<int> current;
-    	 for (int i=0;i<n;i++)
-    	 {
-    	     
-    	     if(current.size() !=0)
-    	     {
-    	         current.push_back(dep[i]);
-    	         //current.remove_if([](int n){ return n <= arr[i]; });
-    	          for (auto it = current.begin(); it != current.end(); ) {
-                        if (*it <arr[i]) {
-                            it = current.erase(it);
-                        } else {
-                            ++it;
-                        }
-                    }
-    	     }
-    	     else
-    	     {
-    	         current.push_back(dep[i]);
-    	     }
-    	     if(current.size() > max_platform)  
-    	        max_platform = current.size();
-    	   //cout<<"Test"<<current.size()<<endl;
-    	   //cout<<"Test__"<<max_platform<<endl;
-    	     
-    	 }
-    	 return max_platform;
+    	
+        //int sz = n;//sizeof(arr) / sizeof(arr[0]);
+        int max_platform = 0;
+        int current_trains = 0;
+        int i=0,j=0;
+        vector<int> arrival(arr, arr + n);
+        vector<int> depart(dep, dep + n);
+        
+        sort(arrival.begin(), arrival.end() );
+        sort(depart.begin(), depart.end() );
+
+        while(i<n && j<n)
+        {
+            if(arrival[i] <= depart[j])
+                {
+                    current_trains++;
+                    i++;//j++;
+                }
+            else if(arrival[i] > depart[j])
+            {
+                current_trains--;
+                j++;
+            }
+            if(current_trains > max_platform)  
+                max_platform = current_trains;
+        }
+        return 	max_platform;
     }
 };
