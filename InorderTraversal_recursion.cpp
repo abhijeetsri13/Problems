@@ -19,6 +19,28 @@ Memory Usage: 8.3 MB, less than 57.13% of C++ online submissions for Binary Tree
  */
 class Solution {
 public:
+
+    void inorderWithoutRecursion(vector<int> &out, TreeNode *root)
+    {
+        if(root == NULL)
+            return;
+        TreeNode *temp=root;
+        std::stack<TreeNode*> st;
+        while(temp!=NULL || st.empty()==false)
+        {
+            while(temp != NULL)
+                {
+                st.push(temp);
+                temp=temp->left;
+                }
+            temp = st.top();
+            st.pop();
+            out.push_back(temp->val);
+            temp=temp->right;
+        }
+    }
+    
+
     void inorder(vector<int> &out, TreeNode *root)
     {
         if(root == NULL)
