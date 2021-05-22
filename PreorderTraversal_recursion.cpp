@@ -18,7 +18,8 @@ Memory Usage: 8.5 MB, less than 37.54% of C++ online submissions for Binary Tree
  */
 class Solution {
 public:
-        void preorder(vector<int> &out, TreeNode *root)
+/*    
+    void preorder(vector<int> &out, TreeNode *root)
     {
         if(root == NULL)
             return;
@@ -32,6 +33,34 @@ public:
             preorder(out, root->right);
         }
     }
+	*/
+	        void preorderWithoutRecursion(vector<int> &out, TreeNode *root)
+    {
+        if(root == NULL)
+            return;
+        TreeNode *temp;//=root;
+        std::stack<TreeNode*> st;
+		st.push(root);
+        
+        while(st.empty()==false)
+        {
+		temp = st.top();
+		out.push_back(temp->val);
+		st.pop();
+            
+		if(temp->right!=NULL)
+			st.push(temp->right);
+            
+		if(temp->left!=NULL)
+			st.push(temp->left);
+ 		
+		
+        }
+            
+            
+    }
+	
+	
     vector<int> preorderTraversal(TreeNode* root) {
           vector<int> out;
         preorder(out, root);
