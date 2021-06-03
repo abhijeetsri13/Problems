@@ -1,3 +1,9 @@
+/*
+
+Runtime: 4 ms, faster than 75.65% of C++ online submissions for Implement strStr().
+Memory Usage: 7.1 MB, less than 12.50% of C++ online submissions for Implement strStr().
+
+*/
 class Solution {
 public:
     int strStr(string haystack, string needle) {
