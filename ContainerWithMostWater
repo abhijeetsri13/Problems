@@ -1,0 +1,40 @@
+/*
+Runtime: 159 ms, faster than 30.99% of C++ online submissions for Container With Most Water.
+Memory Usage: 58.9 MB, less than 97.93% of C++ online submissions for Container With Most Water.
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+
+https://leetcode.com/problems/container-with-most-water/
+*/
+
+
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int left_index=0;
+        int right_index=height.size()-1;
+        int max=0;
+        while(left_index < right_index)
+        {
+            int current = (min(height[left_index],height[right_index])*(right_index-left_index));
+            //cout<<current<<endl;
+            if(current > max )
+                max = current;
+            if(height[left_index] < height[right_index])
+                left_index++;
+            else
+                right_index--;
+        }
+        return max;
+    }
+    int min(int a, int b)
+    {
+        if(a>b)
+            return b;
+        return a;
+    }
+};
